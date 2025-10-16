@@ -14,4 +14,7 @@ class TestAccount:
     def test_dlugi_pesel(self):
         account = Account("John", "Doe","123456789012")
         assert account.pesel == "Invalid"
+    def test_dlugi_pesel(self):
+        account = Account("John", "Doe", None)
+        assert account.pesel == "Invalid"
         
