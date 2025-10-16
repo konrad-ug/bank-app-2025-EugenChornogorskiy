@@ -15,6 +15,25 @@ class TestAccount:
         account = Account("John", "Doe","123456789012")
         assert account.pesel == "Invalid"
     def test_dlugi_pesel(self):
-        account = Account("John", "Doe", None)
+        account = Account("John", "Doe")
         assert account.pesel == "Invalid"
-        
+    def test_correct_promo(self):
+        account = Account("John", "Doe","12345678901","PROM_XYZ")
+        assert account.first_name == "John"
+        assert account.last_name == "Doe"
+        assert account.balance == 50.0
+    def test_long_promo(self):
+        account = Account("John", "Doe","12345678901","PROM_XYZZ")
+        assert account.first_name == "John"
+        assert account.last_name == "Doe"
+        assert account.balance == 0.0       
+    def test_short_promo(self):
+        account = Account("John", "Doe","12345678901","PROM_XY")
+        assert account.first_name == "John"
+        assert account.last_name == "Doe"
+        assert account.balance == 0.0  
+    def test_short_promo(self):
+        account = Account("John", "Doe","12345678901","PRO_XYZZ")
+        assert account.first_name == "John"
+        assert account.last_name == "Doe"
+        assert account.balance == 0.0  
