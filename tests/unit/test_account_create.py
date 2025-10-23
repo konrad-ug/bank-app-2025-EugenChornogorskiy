@@ -37,3 +37,23 @@ class TestAccount:
         assert account.first_name == "John"
         assert account.last_name == "Doe"
         assert account.balance == 0.0  
+    def test_promo_valid_for_young_person(self): 
+        acc = Account("Jan", "Kowalski", pesel="70010112345", promo="PROM_123")
+        assert acc.balance == 50.0
+
+    def test_promo_invalid_for_old_person(self): 
+        acc = Account("Anna", "Nowak", pesel="50010112345", promo="PROM_123")
+        assert acc.balance == 0.0
+
+    def test_no_promo(self):
+        acc = Account("Piotr", "Zieliński", pesel="70010112345", promo=None)
+        assert acc.balance == 0.0
+
+    def test_invalid_pesel(self):
+        acc = Account("Maria", "Wiśniewska", pesel="123", promo="PROM_123")
+        assert acc.pesel == "Invalid" 
+        assert acc.balance == 0.0
+
+    def test_invalid_promo_format(self):
+        acc = Account("Kasia", "Lewandowska", pesel="70010112345", promo="BADPROMO")
+        assert acc.balance == 0.0
