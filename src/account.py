@@ -29,4 +29,3 @@ class Account:
     def is_eligible_for_promo(self): 
         birth_year = self.get_birth_year_from_pesel()
         return birth_year is not None and birth_year > 1960
-        
