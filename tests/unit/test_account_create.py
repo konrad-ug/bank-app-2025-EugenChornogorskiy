@@ -1,5 +1,5 @@
 from src.personal_account import Personal_Account
-
+from src.account import Account
 
 class TestAccount:
     def test_account_creation(self):
@@ -34,4 +34,11 @@ class TestAccount:
         assert acc.balance == 0.0  
     def test_invalid_promo_format(self):
         acc = Personal_Account("Kasia", "Lewandowska", pesel="70010112345", promo="BADPROMO")
+        assert acc.balance == 0.0 
+    def test_invalid_pesel_with_promo(self):
+        acc = Personal_Account("Kasia", "Lewandowska", pesel="7001011234", promo="PROM_123")
+        assert acc.balance == 0.0 
+    def test_start_fee_and_balance(self):
+        acc = Account()
         assert acc.balance == 0.0
+        assert acc.fee == 0.0
